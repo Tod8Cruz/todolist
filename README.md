@@ -1,4 +1,4 @@
-# 윈터프로그래밍 과제
+# 윈터프로그래밍 과제 [![Build Status](https://travis-ci.org/1500sheep/todolist.svg?branch=master)](https://travis-ci.org/1500sheep/todolist)
 
 ### [과제]
 자신있는 웹 프레임워크(Ruby on Rails, Node.js, Django, Flask, Spring 이외 무엇이든 상관 없음)를 이용해서 TODO list를 만들어 보세요.
