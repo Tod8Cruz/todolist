@@ -1,0 +1,27 @@
+handlebars:
+  suffix: .html
+  cache: false
+  expose-session-attributes: true
+spring:
+  h2:
+    console:
+      enabled: true
+
+  profiles: local
+    datasource:
+      data: classpath:import.sql # 시작할때 실행시킬 script
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+      format_sql: true
+    properties.hibernate:
+      hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+
+logging:
+  level:
+    org.hibernate:
+    - debug
+    - type.descriptor.sql.BasicBinder: trace
