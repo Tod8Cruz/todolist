@@ -31,7 +31,7 @@ public class ApiToDoAcceptanceTest extends AcceptanceTest {
     // 예외 케이스s are in 단위 테스트
     @Test
     public void createToDo_성공() {
-        ResponseEntity<Void> response = template.postForEntity("/api/todo", todoDTO, Void.class);
+        ResponseEntity<RestResponse> response = template.postForEntity("/api/todo", todoDTO, RestResponse.class);
         logger.info("createTodo 성공 : " + response.getHeaders().getLocation().getPath());
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -46,6 +46,20 @@ public class ApiToDoAcceptanceTest extends AcceptanceTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
+    }
+
+    @Test
+    public void changeTomComplete_성공() {
+        ResponseEntity<Void> response = template.postForEntity("/api/todo", todoDTO, Void.class);
+        logger.info("createTodo 성공 : " + response.getHeaders().getLocation().getPath());
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+        String location = response.getHeaders().getLocation().getPath().split("/")[2];
+        ResponseEntity<RestResponse> responseEntity = template.getForEntity("/api/todo/complete/" + location, RestResponse.class);
+
+        logger.info("change 성공 : {}" + responseEntity.getBody().getData());
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
@@ -79,8 +93,9 @@ public class ApiToDoAcceptanceTest extends AcceptanceTest {
 
         logger.info("delete 성공 : {}" + responseEntity);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-
     }
+
+
 
     private HttpEntity createHttpEntity(Object body) {
         HttpHeaders headers = new HttpHeaders();

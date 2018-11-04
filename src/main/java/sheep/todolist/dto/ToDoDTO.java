@@ -23,7 +23,6 @@ public class ToDoDTO {
 
     private int priority;
 
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime endDate;
 

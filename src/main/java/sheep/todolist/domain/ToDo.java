@@ -33,7 +33,6 @@ public class ToDo {
     @Column
     private int priority;
 
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column
     private LocalDateTime endDate;
@@ -48,5 +47,9 @@ public class ToDo {
         endDate = toDoDTO.getEndDate();
         isCompleted = toDoDTO.getIsCompleted();
         return this;
+    }
+
+    public void changeToComplete() {
+        isCompleted = true;
     }
 }

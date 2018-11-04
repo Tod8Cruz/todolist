@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/todolist.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/simplepicker.css">
+
+    <script src="js/todolist.js" defer></script>
+    <script src="js/simplepicker.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h3>Create ToDo</h3>
+    <p>
+        <input id="new-title" type="text" placeholder="title">
+        <input id="new-content" type="text" placeholder="content">
+        <input type="checkbox" class="simplepicker-btn">마감 시간 설정</input>
+        <input type="text" class="event-log" style="visibility: hidden" readonly/>
+        <input type="hidden" value="" id="end-date">
+        <button id="add-button">Add</button>
+    </p>
+
+    <h3>Todo</h3>
+    <ul id="incomplete-tasks">
+        <!--<li>-->
+        <!--<input type="checkbox">-->
+        <!--<label>Pay Bills</label>-->
+        <!--<input type="text" class="content">-->
+        <!--<button class="edit">Edit</button>-->
+        <!--<button class="delete">Delete</button>-->
+        <!--</li>-->
+        <!--<li class="editMode"><input type="checkbox"><label>Go Shopping</label><input type="text" value="Go Shopping">-->
+        <!--<button class="edit">Edit</button>-->
+        <!--<button class="delete">Delete</button>-->
+        <!--</li>-->
+
+    </ul>
+
+    <h3>Completed</h3>
+    <ul id="completed-tasks">
+    </ul>
+</div>
+<script type="text/javascript">
+
+    let simplepicker = new SimplePicker({
+        zIndex: 10
+    });
+
+    const $button = document.querySelector('.simplepicker-btn');
+    const $eventLog = document.querySelector('.event-log');
+    $button.addEventListener('change', (e) => {
+        if ($button.checked) {
+            $eventLog.style.visibility = 'visible';
+            simplepicker.open();
+        } else {
+            $eventLog.style.visibility = 'hidden';
+            document.querySelector('#end-date').value = "";
+        }
+    });
+
+    // $eventLog.innerHTML += '\n\n';
+    simplepicker.on('submit', (date, readableDate) => {
+        document.querySelector('#end-date').value = date.toISOString();
+        $eventLog.value = readableDate;
+    });
+
+    simplepicker.on('close', (date) => {
+        $eventLog.value = 'Picker Closed';
+    });
+
+</script>
+</body>
+</html>

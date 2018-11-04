@@ -23,7 +23,7 @@ repositories {
     mavenCentral()
 }
 
-ext['hibernate.version'] = '5.2.11.Final'
+//ext['hibernate.version'] = '5.2.11.Final'
 
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-aop')
@@ -33,6 +33,12 @@ dependencies {
     runtimeOnly('com.h2database:h2')
     compile('pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0')
     compile('org.springframework.boot:spring-boot-devtools')
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.webjars:webjars-locator-core")
+    compile("org.webjars:sockjs-client:1.0.2")
+    compile("org.webjars:stomp-websocket:2.3.3")
+    compile("org.webjars:bootstrap:3.3.7")
+    compile("org.webjars:jquery:3.1.0")
     compileOnly('org.projectlombok:lombok:1.18.0')
     testCompile('org.assertj:assertj-core:3.10.0')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
