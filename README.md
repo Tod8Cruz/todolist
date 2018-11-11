@@ -29,7 +29,7 @@ java -jar build/libs/todolist-0.0.1.jar
 
 #### Page
 
-[URL](http://ec2-13-209-163-242.ap-northeast-2.compute.amazonaws.com:8080/) : AWS EC2 사용
+[URL](http://ec2-13-209-163-242.ap-northeast-2.compute.amazonaws.com:8080/) : AWS EC2 사용 (<span style="color:red">Closed</span>)
 
 
 
